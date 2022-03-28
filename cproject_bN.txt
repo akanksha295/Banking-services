@@ -1,0 +1,428 @@
+void new_acc();
+void displayNewAcc();
+void checkDet();
+void viewList();
+void menu();
+void change();
+void deposit();
+void admin();
+void withdraw();
+void Account_information();
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <fstream>
+#include <string.h>
+struct acc_type
+{
+	int cno,pno,money;
+	char add[30],name[10],dob[10];
+	int avail_balance;
+	
+	int acc_number;
+};
+struct acc_type account[20];
+
+int num_acc;
+FILE *fp;
+float amount;
+int account_no,acc_no;
+
+int main()
+{
+	printf("\t\t!!!!!!----BANK MANAGEMENT SYSTEM----!!!!!!");
+
+	printf("\n\n\n\t\t``````````WELCOME TO THE MAIN MENU````````");
+	num_acc=0;
+	while(1)
+	{
+    printf("\n\n");
+	printf("\n1.Create new account  \n2.Cash Deposit \n3.Cash Withdrawl \n4.Check details of your account  \n5.Clear The Screen and display available options \n6.Log Out \n7.Check Details Of all Account(restricted to admin)");
+    int chn=printf("\t\t\n\n\n ENTER YOUR CHOICE:");
+    scanf("%d",&chn);
+    switch(chn)
+	{
+		case 1:
+	
+	    new_acc();
+		displayNewAcc();
+		printf("\n");
+		menu();
+	   
+		    break;
+	    case 2:
+	    	deposit();
+	    	break;
+	    case 3:
+	    	withdraw();
+	    	break;
+	    	
+	    case 4:
+	        Account_information();
+	    	break;
+	    case 5:
+	    	system("cls");
+	    	menu();
+	    	break;
+	    case 6:
+	    		exit(0);
+	    		break;
+	    case 7:
+	    	    admin();
+	    	    break;
+		default:
+			printf("wrong choice!! plz choose correct option");
+			break;
+			
+	}
+}
+
+}
+
+
+void new_acc()
+{
+   
+	int cno,pno,money;
+	char add[30],name[10],dob[10];
+    int  avail_balance=0;
+	int acc_number;
+    printf(" \n1.exit \n2.fixed account \n3.saving acount \n4.current account");
+    int mch=printf("\nenter type of account you want to make:");
+    scanf("%d",&mch);
+    switch(mch)
+    {
+    	case 1:
+    		{
+    			exit(0);
+    			break;
+    
+			}
+    	
+    		
+    		case 2:
+			{
+				
+			    printf("\n2.fixed account\n");
+			    
+                printf("enter your name");
+              	scanf("%s",&name);
+	            printf("enter your date of birth");
+				scanf("%s",&dob);
+				printf("enter your citizenship number");
+				scanf("%d",&cno);
+				printf("enter your address");
+			    scanf("%s",&add);
+			    printf("enter your 10 digit phone number");
+			    scanf("%d",&pno);
+			    printf("enter your account  number");
+			    scanf("%d",&acc_number);
+			
+			
+							
+				   strcpy(account[acc_number-1].name,name);
+				   strcpy(account[acc_number-1].dob,dob);
+				   account[acc_number-1].cno=cno;
+				   strcpy(account[acc_number-1].add,add);
+				   account[acc_number-1].pno=pno;
+				   account[acc_number-1].acc_number=acc_number;
+				   account[acc_number-1].avail_balance=avail_balance;
+							   
+				fp=fopen("new_acc.text","a");
+				
+				
+				printf(" \n ");	
+				printf("its a fixed account of:%s\n",account[acc_number-1].name);
+				printf("date of birth:%s\n",account[acc_number-1].dob);
+				printf("citizenship number:%d\n",account[acc_number-1].cno);
+				printf("Address:%s\n",account[acc_number-1].add);
+				printf("Phone number:%d\n",account[acc_number-1].pno);
+				printf("available balance is:%d\n",account[acc_number-1].avail_balance);
+				printf("account no is:%d\n",account[acc_number-1].acc_number);
+			    printf("\n");
+				
+				fprintf(fp,"account no is:%d\n",account[acc_number-1].acc_number);
+				fprintf(fp,"its a fixed account of:%s\n",account[acc_number-1].name);
+				fprintf(fp,"date of birth:%s\n",account[acc_number-1].dob);
+				fprintf(fp,"citizenship number:%d\n",account[acc_number-1].cno);
+				fprintf(fp,"Address:%s\n",account[acc_number-1].add);
+				fprintf(fp,"Phone number:%d\n",account[acc_number-1].pno);
+				fprintf(fp,"available balance is:%d\n",account[acc_number-1].avail_balance);
+                fprintf(fp,"\n");
+                fclose(fp);
+				break;
+			}
+	
+	    case 3:
+		{
+			
+			printf("\n3.saving account");
+			printf("\n");
+			printf("enter your name");
+ 	        scanf("%s",&name);
+	        printf("enter your date of birth");
+			scanf("%s",&dob);
+			printf("enter your citizenship number");
+			scanf("%d",&cno);
+			printf("enter your address");
+			scanf("%s",&add);
+			printf("enter your 10 digit phone number");
+			scanf("%d",&pno);
+			printf("enter your account  number");
+		    scanf("%d",&acc_number);
+
+		
+		
+					    
+			   strcpy(account[acc_number-1].name,name);
+			   strcpy(account[acc_number-1].dob,dob);
+			   account[acc_number-1].cno=cno;
+			   strcpy(account[acc_number-1].add,add);
+			   account[acc_number-1].pno=pno;
+			   account[acc_number-1].acc_number=acc_number;
+			   account[acc_number-1].avail_balance=avail_balance;
+			   
+   
+			fp=fopen("new_acc.text","a");
+			
+			
+				printf(" \n ");	
+				printf("its a saving account of:%s\n",account[acc_number-1].name);
+				printf("date of birth:%s\n",account[acc_number-1].dob);
+				printf("citizenship number:%d\n",account[acc_number-1].cno);
+				printf("Address:%s\n",account[acc_number-1].add);
+				printf("Phone number:%d\n",account[acc_number-1].pno);
+				printf("available balance is:%d\n",account[acc_number-1].avail_balance);
+				printf("account no is:%d\n",account[acc_number-1].acc_number);
+			    printf("\n");
+				
+				
+				fprintf(fp,"account no is:%d\n",account[acc_number-1].acc_number);
+				fprintf(fp,"its a fixed account of:%s\n",account[acc_number-1].name);
+				fprintf(fp,"date of birth:%s\n",account[acc_number-1].dob);
+				fprintf(fp,"citizenship number:%d\n",account[acc_number-1].cno);
+				fprintf(fp,"Address:%s\n",account[acc_number-1].add);
+				fprintf(fp,"Phone number:%d\n",account[acc_number-1].pno);
+				fprintf(fp,"available balance is:%d\n",account[acc_number-1].avail_balance);
+                fprintf(fp,"\n");
+		
+			fclose(fp);
+			break;
+		}
+      case 4:
+      	{
+      		
+      		 printf("\n4.current account");
+      		 
+      		 printf("\n");
+    		 printf("enter your name");
+	         scanf("%s",&name);
+	         printf("enter your date of birth");
+	         scanf("%s",&dob);
+	         printf("enter your citizenship number");
+	         scanf("%d",&cno);
+	         printf("enter your address");
+	         scanf("%s",&add);
+	         printf("enter your 10 digit phone number");
+	         scanf("%d",&pno);
+	        printf("enter your account  number");
+			scanf("%d",&acc_number);
+
+   
+   
+			   strcpy(account[acc_number-1].name,name);
+			   strcpy(account[acc_number-1].dob,dob);
+			   account[acc_number-1].cno=cno;
+			   strcpy(account[acc_number-1].add,add);
+			   account[acc_number-1].pno=pno;
+			   account[acc_number-1].acc_number=acc_number;
+			   account[acc_number-1].avail_balance=avail_balance;
+           
+	         fp=fopen("new_acc.text","a");
+	         		
+				printf(" \n ");	
+				printf("its a current account of:%s\n",account[acc_number-1].name);
+				printf("date of birth:%s\n",account[acc_number-1].dob);
+				printf("citizenship number:%d\n",account[acc_number-1].cno);
+				printf("Address:%s\n",account[acc_number-1].add);
+				printf("Phone number:%d\n",account[acc_number-1].pno);
+				printf("available balance is:%d\n",account[acc_number-1].avail_balance);
+				printf("account no is:%d\n",account[acc_number-1].acc_number);
+			    printf("\n");
+				
+				
+				fprintf(fp,"account no is:%d\n",account[acc_number-1].acc_number);
+				fprintf(fp,"its a fixed account of:%s\n",account[acc_number-1].name);
+				fprintf(fp,"date of birth:%s\n",account[acc_number-1].dob);
+				fprintf(fp,"citizenship number:%d\n",account[acc_number-1].cno);
+				fprintf(fp,"Address:%s\n",account[acc_number-1].add);
+				fprintf(fp,"Phone number:%d\n",account[acc_number-1].pno);
+				fprintf(fp,"available balance is:%d\n",account[acc_number-1].avail_balance);
+                fprintf(fp,"\n");
+                fclose(fp);
+	         break;
+		  }
+      
+   }
+}
+void displayNewAcc()
+{
+  
+   printf("\n\n ACCOUNT CREATED!!");
+   printf("\n");
+  
+  
+}
+
+
+void deposit()
+{
+	FILE *fw;
+	fw=fopen("new_acc.text","a");
+	int add_money;
+	int choice,wdraw=0;
+	auto int no;
+	printf("enter your account number");
+	scanf("%d",&no);
+    printf("\nThe current balance for account %d is %d \n", no, account[no-1].avail_balance);
+    printf("enter the amount to be deposit");
+    scanf("%d",&add_money);
+  
+
+    while(no=account[no-1].acc_number)
+    {
+
+         account[no-1].avail_balance=account[no-1].avail_balance+add_money;
+         printf("\nThe New balance for account %d is %d \n",no, account[no-1].avail_balance);
+         fprintf(fw,"\nThe New balance for account %d is %d \n",no, account[no-1].avail_balance);
+         fclose(fw);
+         break; 
+   }no++;
+}
+void withdraw()
+	{
+	
+	
+	fp=fopen("new_acc.text","a");
+	int wd_money;
+	int choice,wdraw=0;
+	auto int no;
+	printf("enter your account number");
+	scanf("%d",&no);
+    printf("\nThe current balance for account %d is %d \n", no, account[no-1].avail_balance);
+    printf("enter the amount to be withdraw");
+    scanf("%d",&wd_money);
+    while(no=account[no-1].acc_number)
+    {
+
+         account[no-1].avail_balance=account[no-1].avail_balance-wd_money;
+         printf("\nThe New balance for account %d is %d \n",no, account[no-1].avail_balance);
+         fprintf(fp,"\nThe New balance for account %d is %d \n",no, account[no-1].avail_balance);
+         printf("\n");
+         fclose(fp);
+         break; 
+   }no++;
+
+
+	}
+	
+	
+	
+	
+	void Account_information()
+{
+     register int num_acc = 0;
+     //if (!strcmp(customer,account[count].name))
+     while(strlen(account[num_acc].name)>0)
+     {
+         printf("\n1.Customer name    : %s \n" , 
+         account[num_acc].name);
+         printf("2.Date of Birth      : %s \n" , 
+         account[num_acc].dob);
+         printf("3.Citizenship Number : %d \n" , 
+         account[num_acc].cno);
+         printf("4.Address            : %s \n" , 
+         account[num_acc].add);
+         printf("5.Phone Number       : %d \n" , 
+         account[num_acc].pno);
+         printf("6.Available balance  : %d \n\n" , 
+         account[num_acc].avail_balance);
+         num_acc++;
+     }
+}	
+void admin()
+{
+	char pass[10];
+	char code[10]="123@aka";
+    printf("enter admin priviledge password:");
+    scanf("%s",&pass);
+    if(strcmp(pass,code)==0)
+    {
+    	char ch;
+    	FILE *fa;
+    	fa=fopen("new_acc.text","r");
+    	if(fa==NULL)
+    	{
+    		printf("technical issue!! try again later");
+    		exit(1);
+    		
+		}
+		ch=fgetc(fa);
+		while(!feof(fa))
+	{
+		printf("%c",ch);
+		ch=fgetc(fa);
+		
+	}
+	fclose(fa);
+	
+	}
+	else
+	{
+		printf("WRONG PASSCODE!! ACCESS DENIED....");
+		exit(1);
+	}
+}
+void menu()
+{
+	
+    printf("\n\n");
+	printf("\n1.Create new account \n2.Cash Deposit \n3.Cash Withdrawl \n4.Check details of all account  \n5.Clear The Screen and display available options \n6.Log Out \n7.Check Details Of all Account(restricted to admin)");
+    int chn=printf("\t\t\n\n\n ENTER YOUR CHOICE:(1/2/3/4/5/6/7/8)");
+    scanf("%d",&chn);
+    switch(chn)
+	{
+		case 1:
+	
+	    new_acc();
+		displayNewAcc();
+		printf("\n");
+	
+	   
+		    break;
+	
+	    case 2:
+	    	deposit();
+	    	break;
+	    case 3:
+	    	withdraw();
+	    	break;
+	    	
+	    case 4:
+	    	Account_information();
+	    	break;
+	    case 5:
+	          menu();
+	    	  break;
+	     case 6:
+	    		exit(0);
+	    		break;
+	     case 7:
+	     	    admin();
+	     	    break;
+	
+		default:
+			printf("wrong choice!! plz choose correct option");
+			break;
+}
+}
